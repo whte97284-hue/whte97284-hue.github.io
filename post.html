@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN" data-phase="hiru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>かたわれ時</title>
+<meta name="description" content="かたわれ時 · 文章">
+<meta name="theme-color" content="#0b1428">
+<link rel="preload" href="assets/fonts/serif-400-hot.3806c509.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://api-worker.wh1te.top" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/fonts-tail.css?v=20261112a" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="assets/css/fonts-tail.css?v=20261112a"></noscript>
+<link rel="stylesheet" href="assets/css/main.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/blog.css?v=20261112a">
+<script>try{var s=localStorage.getItem("kata:size"),l=localStorage.getItem("kata:leading"),t=localStorage.getItem("kata:theme");s&&(document.documentElement.dataset.size=s);l&&(document.documentElement.dataset.leading=l);t&&t!=="story"&&(document.documentElement.dataset.theme=t)}catch(e){}</script>
+<link rel="expect" href="#kata-hero-end" blocking="render">
+<script src="assets/js/vt.js?v=20261112a"></script>
+<script src="assets/js/config.js?v=20261112a"></script>
+<script src="assets/js/api.js?v=20261112a"></script>
+<script src="assets/js/depth.js?v=20261112a" defer></script>
+<script src="assets/js/site.js?v=20261112a" defer></script>
+<script src="assets/js/blog.js?v=20261112a" defer></script>
+</head>
+<body class="post" data-await data-post-state="loading">
+<div class="grain" aria-hidden="true"></div>
+<div class="comet" aria-hidden="true"><div class="comet__track"></div><div class="comet__ticks"></div><div class="comet__head"></div></div>
+
+<header class="bar" data-over-image>
+  <a class="bar__home" href="index.html">かたわれ時 <span class="latin">Katawaredoki</span></a>
+  <div class="bar__chapter" aria-live="polite"><span data-default=""></span></div>
+  <div class="bar__tools">
+    <a class="bar__btn bar__close" href="index.html#latest" data-close-post aria-label="合上文章（Esc）" title="合上（Esc）"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg><span>合上</span></a>
+    <a class="bar__btn" href="archive.html" aria-label="文库"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 3.5h3v13H4zM8.5 3.5h3v13h-3zM13 4.2l2.8-.7 2.6 12.4-2.8.6z"/></svg><span>文库</span></a>
+    <button class="bar__btn" data-open-drawer aria-label="目录与阅读设置"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h10M3 14h14"/></svg><span>目录</span></button>
+  </div>
+</header>
+
+<div class="scrim"></div>
+<aside class="drawer" aria-hidden="true" aria-label="目录与阅读设置">
+  <button class="bar__btn drawer__close" data-close-drawer aria-label="关闭"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
+  <h3>目次<span class="latin">Contents</span></h3>
+  <ol class="toc"></ol>
+  <div class="settings">
+    <div><div class="setting__label">字号</div><div class="seg" data-pref="size"><button value="s">小</button><button value="m">中</button><button value="l">大</button></div></div>
+    <div><div class="setting__label">行距</div><div class="seg" data-pref="leading"><button value="tight">紧</button><button value="normal">适中</button><button value="loose">疏</button></div></div>
+    <div><div class="setting__label">纸色</div><div class="seg" data-pref="theme"><button value="story">随写下的时刻</button><button value="day">昼</button><button value="night">夜</button></div>
+      <p class="setting__hint">“随写下的时刻”：纸色取自这篇文字被写下的钟点——清晨、白昼、黄昏或夜。</p></div>
+  </div>
+</aside>
+
+<main data-post>
+  <section class="post-hero" data-dark-stage aria-label="题图">
+    <div class="opener__stage">
+      <div data-slot="hero" class="post-hero__sky"><div class="depth" style="--tint:#0b1734"></div></div>
+      <div class="post-hero__head">
+        <div>
+          <p class="post-hero__kicker post-hero__line" data-slot="kicker"><span class="latin">Loading</span></p>
+          <h1 class="post-hero__line">　</h1>
+          <p class="post-hero__sub post-hero__line" data-slot="sub">正在从云端取回……</p>
+        </div>
+        <p class="post-hero__meta post-hero__line" data-slot="meta"></p>
+      </div>
+      <div class="post-hero__cue" aria-hidden="true"></div>
+    </div>
+  </section>
+  <!-- 冷启动加载页：只有缓存里没有这篇时才插入（也才下载这张图） -->
+  <template id="post-loader"><div class="post-loader" aria-hidden="true">
+    <div class="post-loader__frame">
+      <picture>
+        <source media="(max-aspect-ratio: 4/5)" srcset="assets/img/ld-sky-m-600.webp 600w, assets/img/ld-sky-m-900.webp 900w" sizes="100vw">
+        <img src="assets/img/ld-sky-1600.webp" srcset="assets/img/ld-sky-960.webp 960w, assets/img/ld-sky-1600.webp 1600w" sizes="100vw" alt="" decoding="async">
+      </picture>
+      <i class="post-loader__glow"></i><i class="post-loader__glow post-loader__glow--frag"></i>
+    </div>
+    <p class="post-loader__text"><span>正在从云端取回</span><i></i></p>
+  </div></template>
+  <script>
+    window.KataAPI && (window.__kataPrefill = KataAPI.prefill());
+    window.__kataPrefill && KataAPI.fonts.warmPost(window.__kataPrefill);   // 正文还没上屏，就先把它要用的字体分层取回来
+    if (!window.__kataPrefill) { var t = document.getElementById("post-loader"), st = document.querySelector(".post-hero .opener__stage"); st && st.insertBefore(t.content.cloneNode(true), st.querySelector(".post-hero__head")); }
+  </script>
+  <span id="kata-hero-end" hidden></span>
+
+  <article class="prose post-intro wp" id="p-0" data-slot="body">
+    <div class="skel"><i></i><i></i><i></i><i></i></div>
+  </article>
+
+  <section class="prose post-end" data-slot="end"></section>
+
+  <section class="prose comments" data-comments aria-labelledby="h-cm">
+    <div class="cm-wrap">
+      <aside class="cm-side">
+        <h2 class="cm-head" id="h-cm">留言<b data-slot="ccount"></b></h2>
+        <form class="cm-form" novalidate>
+          <p class="cm-form__replying" data-slot="replying" hidden></p>
+          <label class="cm-form__text"><span class="sr-only">留言</span><textarea name="content" rows="4" maxlength="2000" placeholder="说点什么"></textarea><span class="cm-form__count latin" data-slot="chars" aria-hidden="true"></span></label>
+          <div class="cm-form__row">
+            <label><span class="sr-only">称呼</span><input name="author_name" autocomplete="nickname" maxlength="60" placeholder="称呼"></label>
+            <label><span class="sr-only">邮箱（不公开）</span><input name="author_email" type="email" autocomplete="email" maxlength="120" placeholder="邮箱（不公开）"></label>
+          </div>
+          <input type="hidden" name="parent" value="0">
+          <div class="cm-form__foot">
+            <p class="cm-form__note" data-slot="form-note" aria-live="polite"></p>
+            <button class="cm-form__send" type="submit">发送</button>
+          </div>
+        </form>
+      </aside>
+      <ol class="cm-list" data-slot="comments"></ol>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>かたわれ時 · <a href="archive.html">文库</a></span><span class="edge" data-edge></span>
+  </footer>
+</main>
+<div class="peek" aria-hidden="true"></div>
+</body>
+</html>

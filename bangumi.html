@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN" data-phase="hiru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>追番 — かたわれ時</title>
+<meta name="description" content="かたわれ時 · 追番：正在追的、这一季每周的放送，与新海诚的作品年表。">
+<meta name="theme-color" content="#5f8fc0">
+<link rel="preload" href="assets/fonts/serif-400-hot.3806c509.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/st01-1600.webp?v=3" as="image" imagesrcset="assets/img/st01-960.webp?v=3 960w, assets/img/st01-1600.webp?v=3 1600w" imagesizes="100vw" fetchpriority="high">
+<link rel="preconnect" href="https://api-worker.wh1te.top" crossorigin>
+<link rel="preconnect" href="https://lain.bgm.tv">
+<link rel="stylesheet" href="assets/css/fonts.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/fonts-tail.css?v=20261112a" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="assets/css/fonts-tail.css?v=20261112a"></noscript>
+<link rel="stylesheet" href="assets/css/main.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/blog.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/bangumi.css?v=20261112a">
+<script src="assets/js/vt.js?v=20261112a"></script>
+<script src="assets/js/config.js?v=20261112a"></script>
+<script src="assets/js/api.js?v=20261112a" defer></script>
+<script src="assets/js/depth.js?v=20261112a" defer></script>
+<script src="assets/js/site.js?v=20261112a" defer></script>
+<script src="assets/js/blog.js?v=20261112a" defer></script>
+<script src="assets/js/bangumi.js?v=20261112a" defer></script>
+</head>
+<body class="bangumi-page">
+<div class="grain" aria-hidden="true"></div>
+<div class="comet" aria-hidden="true"><div class="comet__track"></div><div class="comet__ticks"></div><div class="comet__head"></div></div>
+
+<header class="bar" data-over-image>
+  <a class="bar__home" href="index.html">かたわれ時 <span class="latin">Katawaredoki</span></a>
+  <div class="bar__chapter" aria-live="polite"><span data-default="追番">追番</span></div>
+  <div class="bar__tools">
+    <a class="bar__btn" href="archive.html" aria-label="文库"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 3.5h3v13H4zM8.5 3.5h3v13h-3zM13 4.2l2.8-.7 2.6 12.4-2.8.6z"/></svg><span>文库</span></a>
+    <a class="bar__btn" href="gallery.html" aria-label="画廊"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 4h14v12H3zM3 13l4-4 3 3 2-2 5 5"/></svg><span>画廊</span></a>
+  </div>
+</header>
+
+<main>
+  <!-- 坂道：深度图让扶手、路灯在前，整座城市在远处；向下滚动时镜头慢慢升起 -->
+  <section class="bg-hero" data-dark-stage aria-label="追番">
+    <div class="depth" style="--tint:#587073" data-depth="assets/depth/st01.webp?v=3" data-strength=".022" data-focus=".2" data-haze=".12" data-haze-color="#dceaf6" data-motes=".45" data-mote-color="#fffbe8" data-flare=".55" data-zoom="1.07">
+      <picture><img src="assets/img/st01-1600.webp?v=3" srcset="assets/img/st01-960.webp?v=3 960w, assets/img/st01-1600.webp?v=3 1600w" sizes="100vw" alt="夏日午后，坂道的红色扶手一路向下，尽头是整座城市与积云" width="1600" height="985" fetchpriority="high"></picture>
+    </div>
+    <i class="bg-hero__sun" aria-hidden="true"></i>
+    <div class="mist" aria-hidden="true"><i class="mist__layer"></i><div class="mist__wisps"><i class="mist__layer mist__layer--wisp"></i><i class="mist__layer mist__layer--wisp mist__layer--near"></i></div></div>
+    <div class="bg-hero__head">
+      <div>
+        <h1><span class="bg-line">追番</span><span class="bg-line latin">Bangumi — the season, week by week</span></h1>
+        <p class="bg-hero__nav bg-line"><a href="#week">本季放送</a><a href="#following">在追</a><a href="#shinkai">新海诚</a></p>
+      </div>
+      <p class="bg-hero__now bg-line" data-slot="today"></p>
+    </div>
+  </section>
+
+  <section class="section bg-week" id="week" data-chapter="本季放送">
+    <div class="section__head"><h2>本季放送</h2><span class="latin" data-slot="season">This season — by weekday</span></div>
+    <div class="bg-days" role="tablist" aria-label="星期" data-slot="days"></div>
+    <div class="bg-shelf" data-slot="shelf" aria-live="polite" aria-busy="true"></div>
+  </section>
+
+  <section class="section bg-follow" id="following" data-chapter="在追">
+    <div class="section__head"><h2>在追</h2><span class="latin">Following — on bilibili</span></div>
+    <div class="bg-follow__list" data-slot="following"></div>
+  </section>
+
+  <section class="section bg-shinkai" id="shinkai" data-chapter="新海诚 · 年表">
+    <div class="section__head"><h2>新海诚 · 年表</h2><span class="latin">Makoto Shinkai — 2002 → 2022</span></div>
+    <div class="bg-line-wrap">
+      <svg class="bg-cord" aria-hidden="true" preserveAspectRatio="none"><path/></svg>
+      <ol class="bg-films" data-slot="films"></ol>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>かたわれ時 · <a href="index.html">首页</a> · <a href="archive.html">文库</a> · <a href="gallery.html">画廊</a></span><span class="edge" data-slot="sync"></span>
+  </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN" data-phase="asa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>文库 — かたわれ時</title>
+<meta name="description" content="かたわれ時的全部文字：按年份、分类，以及它们被写下的时刻。">
+<meta name="theme-color" content="#426ea0">
+<link rel="preload" href="assets/fonts/serif-400-hot.3806c509.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://api-worker.wh1te.top" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/fonts-tail.css?v=20261112a" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="assets/css/fonts-tail.css?v=20261112a"></noscript>
+<link rel="stylesheet" href="assets/css/main.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/blog.css?v=20261112a">
+<script>try{var t=localStorage.getItem("kata:theme");t&&t!=="story"&&(document.documentElement.dataset.theme=t)}catch(e){}</script>
+<script src="assets/js/vt.js?v=20261112a"></script>
+<script src="assets/js/config.js?v=20261112a"></script>
+<script src="assets/js/api.js?v=20261112a" defer blocking="render"></script>
+<script src="assets/js/depth.js?v=20261112a" defer blocking="render"></script>
+<script src="assets/js/site.js?v=20261112a" defer blocking="render"></script>
+<script src="assets/js/blog.js?v=20261112a" defer blocking="render"></script>
+<script>if (!(window.KataVT && KataVT.warm)) document.querySelectorAll("script[blocking]").forEach(function (s) { s.removeAttribute("blocking"); });</script>
+</head>
+<body class="post archive-page">
+<div class="grain" aria-hidden="true"></div>
+<div class="comet" aria-hidden="true"><div class="comet__track"></div><div class="comet__ticks"></div><div class="comet__head"></div></div>
+
+<header class="bar" data-over-image>
+  <a class="bar__home" href="index.html">かたわれ時 <span class="latin">Katawaredoki</span></a>
+  <div class="bar__chapter" aria-live="polite"><span data-default="文库">文库</span></div>
+  <div class="bar__tools">
+    <a class="bar__btn" href="gallery.html" aria-label="画廊"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 4.5h13v11h-13zM3.5 12.5l3.6-3.4 3 2.6 2.4-2 4 3.3"/><circle cx="13.2" cy="7.6" r="1.1"/></svg><span>画廊</span></a><a class="bar__btn" href="index.html#latest" aria-label="最新"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM10 6.5V10l2.6 1.8"/></svg><span>最新</span></a>
+  </div>
+</header>
+
+<main>
+  <section class="arch-hero" data-dark-stage data-reel aria-label="文库">
+    <div class="depth" style="--tint:#4f7cae" data-depth="assets/depth/bg13.webp" data-strength=".03" data-focus=".55" data-haze=".16" data-haze-color="#e3edf5" data-grade="-.08">
+      <picture><source media="(max-width: 720px) and (orientation: portrait)" srcset="assets/img/po-dusk-800.webp 800w, assets/img/po-dusk-1200.webp 1200w" sizes="100vw"><img src="assets/img/bg13-1600.webp" srcset="assets/img/bg13-960.webp 960w, assets/img/bg13-1600.webp 1600w" sizes="100vw" alt="从山上望见的糸守湖，湖面映着晨光" width="1600" height="900" fetchpriority="high"></picture>
+    </div>
+    <div class="mist" aria-hidden="true"><i class="mist__layer"></i><div class="mist__wisps"><i class="mist__layer mist__layer--wisp"></i><i class="mist__layer mist__layer--wisp mist__layer--near"></i></div></div>
+    <div class="arch-hero__head">
+      <p class="post-hero__kicker post-hero__line"><span>文库</span><span class="latin">Archive</span></p>
+      <h1 class="post-hero__line">所有被写下的<br>时刻</h1>
+      <p class="arch-hero__stats post-hero__line latin" data-slot="stats"><span>……</span></p>
+    </div>
+  </section>
+
+  <div class="arch" data-archive>
+    <div class="arch__tools">
+      <div class="sky" data-slot="sky" aria-label="按写下的时刻筛选"><div class="sky__band"></div><div class="sky__axis latin"><span style="--h:0">00:00</span></div></div>
+      <div class="arch__row">
+        <div class="chips" data-slot="cats" role="group" aria-label="分类"><button class="chip is-skel" tabindex="-1" aria-hidden="true">全部<small>00</small></button><button class="chip is-skel" tabindex="-1" aria-hidden="true">全部<small>00</small></button><button class="chip is-skel" tabindex="-1" aria-hidden="true">全部<small>00</small></button><button class="chip is-skel" tabindex="-1" aria-hidden="true">全部<small>00</small></button><button class="chip is-skel" tabindex="-1" aria-hidden="true">全部<small>00</small></button></div>
+        <label class="search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.2"/><path d="M12.4 12.4L17 17"/></svg><span class="sr-only">搜索</span><input type="search" placeholder="寻找一个名字……" autocomplete="off" enterkeyhint="search"><kbd class="latin">/</kbd></label>
+      </div>
+      <p class="arch__count" data-slot="count" aria-live="polite">　</p>
+    </div>
+    <!-- 同构骨架：与真实年份 / 条目同结构、同高度，数据到达时页面不跳 -->
+    <div class="arch__years" data-slot="years" aria-busy="true"><section class="year is-skel" aria-hidden="true"><h2 class="year__no latin">2026<small>二〇二六 · 0 篇</small></h2><ol class="ar-list">
+<li class="ar is-skel" aria-hidden="true"><a tabindex="-1"><span class="ar__date"><span class="latin">00.00</span><small>00:00 夜</small></span><span class="ar__node"><i class="sky-dot"></i></span><span class="ar__body"><span class="ar__title">　</span><span class="ar__excerpt">　<br>　</span></span><span class="ar__cat">日常</span></a></li>
+<li class="ar is-skel" aria-hidden="true"><a tabindex="-1"><span class="ar__date"><span class="latin">00.00</span><small>00:00 夜</small></span><span class="ar__node"><i class="sky-dot"></i></span><span class="ar__body"><span class="ar__title">　</span><span class="ar__excerpt">　<br>　</span></span><span class="ar__cat">日常</span></a></li>
+<li class="ar is-skel" aria-hidden="true"><a tabindex="-1"><span class="ar__date"><span class="latin">00.00</span><small>00:00 夜</small></span><span class="ar__node"><i class="sky-dot"></i></span><span class="ar__body"><span class="ar__title">　</span><span class="ar__excerpt">　<br>　</span></span><span class="ar__cat">日常</span></a></li>
+<li class="ar is-skel" aria-hidden="true"><a tabindex="-1"><span class="ar__date"><span class="latin">00.00</span><small>00:00 夜</small></span><span class="ar__node"><i class="sky-dot"></i></span><span class="ar__body"><span class="ar__title">　</span><span class="ar__excerpt">　<br>　</span></span><span class="ar__cat">日常</span></a></li>
+<li class="ar is-skel" aria-hidden="true"><a tabindex="-1"><span class="ar__date"><span class="latin">00.00</span><small>00:00 夜</small></span><span class="ar__node"><i class="sky-dot"></i></span><span class="ar__body"><span class="ar__title">　</span><span class="ar__excerpt">　<br>　</span></span><span class="ar__cat">日常</span></a></li>
+<li class="ar is-skel" aria-hidden="true"><a tabindex="-1"><span class="ar__date"><span class="latin">00.00</span><small>00:00 夜</small></span><span class="ar__node"><i class="sky-dot"></i></span><span class="ar__body"><span class="ar__title">　</span><span class="ar__excerpt">　<br>　</span></span><span class="ar__cat">日常</span></a></li>
+<li class="ar is-skel" aria-hidden="true"><a tabindex="-1"><span class="ar__date"><span class="latin">00.00</span><small>00:00 夜</small></span><span class="ar__node"><i class="sky-dot"></i></span><span class="ar__body"><span class="ar__title">　</span><span class="ar__excerpt">　<br>　</span></span><span class="ar__cat">日常</span></a></li>
+<li class="ar is-skel" aria-hidden="true"><a tabindex="-1"><span class="ar__date"><span class="latin">00.00</span><small>00:00 夜</small></span><span class="ar__node"><i class="sky-dot"></i></span><span class="ar__body"><span class="ar__title">　</span><span class="ar__excerpt">　<br>　</span></span><span class="ar__cat">日常</span></a></li>
+</ol></section></div>
+  </div>
+
+  <footer class="foot">
+    <div class="thread" aria-hidden="true"><svg viewBox="0 0 1000 60" preserveAspectRatio="none"><path d="M0 30 C 160 10, 320 50, 480 28 C 520 22, 540 42, 500 44 C 460 46, 470 18, 540 22 S 820 48, 1000 26"/></svg></div>
+    <span>かたわれ時 · <a href="index.html">首页</a></span><span class="edge" data-edge></span>
+  </footer>
+</main>
+<div class="peek" aria-hidden="true"></div>
+</body>
+</html>

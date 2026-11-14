@@ -1,0 +1,197 @@
+/* ==========================================================================
+   かたわれ時 — 追番
+   夏日午后的坂道：扶手在前，城市在远处，积云很高。版面留白多、字重轻，颜色只取自封面本身。
+   ========================================================================== */
+
+/* ---------- 首屏 ---------- */
+.bg-hero {
+  position: relative; height: calc(100vh + var(--mist-h)); height: calc(100svh + var(--mist-h)); min-height: calc(560px + var(--mist-h));
+  overflow: hidden; isolation: isolate; --mist-glow: #c3ddf3; background: var(--bg);
+}
+/* 画面只铺满一屏多一点（不铺到整个“一屏 + 云海”的高度）：坂道和红色扶手在画面下方四分之一，铺满整个高度时会被云海吞掉 */
+.bg-hero .depth { position: absolute; left: 0; right: 0; top: 0; height: calc(100svh + var(--mist-h) * .3); }
+.bg-hero .depth img { object-position: 42% 50%; }
+/* 压暗只在需要的地方：顶栏一条，标题背后一团 */
+.bg-hero::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;   /* 不设 z-index：压在云海（.mist）之下，云海的纸色不会被染暗 */
+  background: linear-gradient(to bottom, rgb(10 30 60 / .32), transparent 22%),
+              radial-gradient(ellipse 70% 46% at 22% calc(100% - var(--mist-h) - 10vh), rgb(8 22 44 / .5), transparent 72%);
+}
+/* 午后的太阳在画面右上方之外：一团呼吸着的光，和一道很淡的镜头光斑 */
+.bg-hero__sun {
+  position: absolute; z-index: 1; top: -34vmax; right: -22vmax; width: 78vmax; aspect-ratio: 1; pointer-events: none;
+  background: radial-gradient(circle, rgb(255 253 240 / .62), rgb(255 246 222 / .22) 28%, rgb(255 240 214 / .06) 48%, transparent 64%);
+  animation: bg-sun 9s ease-in-out infinite alternate; will-change: transform, opacity;
+}
+.bg-hero__sun::after {
+  content: ""; position: absolute; left: -38%; top: 64%; width: 120%; height: 1.5px; transform: rotate(-31deg); transform-origin: right center; opacity: .5;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / .35) 40%, rgb(255 251 232 / .85) 52%, rgb(255 255 255 / .3) 62%, transparent);
+}
+@keyframes bg-sun { from { opacity: .78; transform: scale(1); } to { opacity: 1; transform: scale(1.06); } }
+
+.bg-hero__head {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: calc(var(--mist-h) + clamp(48px, 11vh, 120px));
+  padding: 0 clamp(var(--gutter), 6vw, 100px); color: #f8f4ee; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px;
+  will-change: transform, opacity;
+}
+.bg-hero h1 { margin: 0; font-weight: 300; font-size: clamp(56px, 9vw, 150px); line-height: 1; letter-spacing: .22em; text-shadow: 0 4px 70px rgb(8 22 44 / .5); }
+.bg-hero h1 .latin { display: block; margin-top: 1em; font-size: clamp(12px, .9vw, 14px); letter-spacing: .5em; font-weight: 500; text-transform: uppercase; text-shadow: none; opacity: .88; }
+.bg-hero__nav, .bg-hero__nav.bg-line { display: flex; gap: 2.2em; margin: 2.2em 0 0; font-size: clamp(13px, 1vw, 15px); letter-spacing: .32em; }
+.bg-hero__nav a { position: relative; color: inherit; opacity: .92; }
+.bg-hero__nav a::after { content: ""; position: absolute; left: 0; right: .32em; bottom: -6px; height: 1px; background: currentColor; transform: scaleX(.18); transform-origin: left; transition: transform .7s var(--ease-out); }
+.bg-hero__nav a:hover::after { transform: scaleX(1); }
+.bg-hero__now { writing-mode: vertical-rl; font-size: 13px; letter-spacing: .45em; line-height: 2.2; opacity: .88; margin: 0; }
+.bg-hero__now b { font-weight: 400; color: #ffe1c8; }
+/* 标题逐行浮现 */
+.bg-line { display: block; opacity: 0; transform: translateY(26px); transition: opacity 1.6s var(--ease-out), transform 2s var(--ease-out); }
+.bg-hero.is-on .bg-line { opacity: 1; transform: none; }
+.bg-hero h1 .bg-line:nth-child(2) { transition-delay: .25s; }
+.bg-hero .bg-hero__nav.bg-line { transition-delay: .5s; }
+.bg-hero .bg-hero__now.bg-line { transition-delay: .8s; }
+.bg-hero + .section { position: relative; z-index: 1; margin-top: calc(var(--mist-h) * -.95); }
+
+/* ---------- 在追 ---------- */
+.bg-follow__list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: clamp(28px, 3.4vw, 48px); }
+.bg-follow__card { display: flex; flex-direction: column; gap: 1.15em; color: inherit; }
+.bg-follow__card[data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity 1.1s calc(var(--i) * .12s) var(--ease-out), transform 1.4s calc(var(--i) * .12s) var(--ease-out); }
+.bg-follow__card[data-reveal].is-in { opacity: 1; transform: none; }
+.bg-follow__cover {
+  position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 3px; overflow: hidden; background: var(--c);
+  box-shadow: 0 34px 60px -40px color-mix(in srgb, var(--g) 85%, #0a1630);
+  transition: transform .9s var(--ease-out), box-shadow .9s var(--ease-out);
+}
+.bg-follow__cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity 1.2s var(--ease-out), transform 1.8s var(--ease-out); }
+.bg-follow__cover img.is-loaded { opacity: 1; transform: none; }
+.bg-follow__glow { position: absolute; inset: 0; background: linear-gradient(to top, color-mix(in srgb, var(--g) 55%, transparent), transparent 62%); opacity: 0; transition: opacity .8s var(--ease-out); }
+.bg-follow__text { display: flex; flex-direction: column; gap: .5em; }
+.bg-follow__status { display: flex; align-items: center; gap: .7em; font-size: 12px; letter-spacing: .3em; color: var(--ink-soft); }
+.bg-follow__status i { width: 6px; height: 6px; border-radius: 50%; background: var(--thread); box-shadow: 0 0 0 4px color-mix(in srgb, var(--thread) 16%, transparent); }
+.bg-follow__status .latin { font-style: italic; letter-spacing: .08em; color: var(--ink-faint); font-size: 13px; }
+.bg-follow__title { font-size: clamp(18px, 1.5vw, 22px); font-weight: 500; letter-spacing: .1em; line-height: 1.5; }
+.bg-follow__meta { font-size: 12.5px; letter-spacing: .16em; color: var(--ink-faint); }
+.bg-follow__ep { display: flex; justify-content: space-between; gap: 1em; padding-top: .7em; border-top: 1px solid var(--rule); font-size: 13px; letter-spacing: .14em; color: var(--ink-soft); }
+.bg-follow__ep span { color: var(--ink-faint); }
+@media (hover: hover) {
+  .bg-follow__card:hover .bg-follow__cover { transform: translateY(-6px); box-shadow: 0 44px 70px -40px color-mix(in srgb, var(--g) 95%, #0a1630); }
+  .bg-follow__card:hover .bg-follow__cover img.is-loaded { transform: scale(1.035); }
+  .bg-follow__card:hover .bg-follow__glow { opacity: 1; }
+}
+
+/* ---------- 本季放送 ---------- */
+.bg-days { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); border-bottom: 1px solid var(--rule); margin-bottom: clamp(30px, 5vh, 52px); }
+/* 一根共用的下划线：在星期之间滑过去（只动位移） */
+.bg-days__ink {
+  position: absolute; left: 0; bottom: -1px; width: calc(100% / 7); height: 2px; pointer-events: none;
+  background: linear-gradient(var(--thread), var(--thread)) center / 52% 100% no-repeat;
+  transform: translateX(calc(var(--k, 0) * 100%)); transition: transform .75s var(--ease-film);
+}
+.bg-day { position: relative; display: flex; flex-direction: column; align-items: center; gap: .35em; padding: .6em 0 1.15em; color: var(--ink-faint); transition: color .5s var(--ease-out); }
+.bg-day__jp { font-size: clamp(22px, 2.4vw, 34px); font-weight: 300; line-height: 1.2; transition: transform .7s var(--ease-out); }
+.bg-day__cn { font-size: 12px; letter-spacing: .3em; padding-left: .3em; position: relative; }
+.bg-day__n { font-size: 13px; font-style: italic; letter-spacing: .04em; }
+.bg-day[aria-selected="true"] { color: var(--ink); }
+.bg-day[aria-selected="true"] .bg-day__jp { transform: translateY(-2px); }
+.bg-day.is-today .bg-day__jp { color: var(--thread); }
+.bg-day:focus-visible { outline: 1px solid var(--thread); outline-offset: -4px; border-radius: 3px; }
+@media (hover: hover) { .bg-day:hover { color: var(--ink-soft); } }
+
+.bg-shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 30px 22px; min-height: 40vh; align-content: start; transition: opacity .18s ease, transform .18s ease; }
+.bg-shelf.is-leaving { opacity: 0; transform: translateY(6px); }
+.bg-shelf.is-entering .bg-card, .bg-card.is-unfolding { animation: bg-rise .85s var(--ease-out) both; animation-delay: calc(min(var(--i), 14) * 32ms); }
+.bg-card.is-folded { display: none; }
+.bg-more {
+  display: block; margin: clamp(30px, 5vh, 48px) auto 0; padding: .75em 2em; border: 1px solid var(--rule); border-radius: 999px;
+  font-size: 13px; letter-spacing: .3em; color: var(--ink-soft); transition: color .4s, border-color .4s, background-color .4s;
+}
+.bg-more b { font-weight: 400; font-style: italic; font-size: 15px; letter-spacing: .02em; color: var(--thread); margin: 0 .15em; }
+@media (hover: hover) { .bg-more:hover { color: var(--ink); border-color: color-mix(in srgb, var(--thread) 55%, var(--rule)); background: color-mix(in srgb, var(--thread) 5%, transparent); } }
+@keyframes bg-rise { from { opacity: 0; transform: translateY(16px); } }
+.bg-card { display: flex; flex-direction: column; gap: .6em; color: inherit; min-width: 0; }
+.bg-card__cover { position: relative; display: block; aspect-ratio: 3 / 4; border-radius: 3px; overflow: hidden; background: var(--bg-2); transition: transform .8s var(--ease-out), box-shadow .8s var(--ease-out); }
+.bg-card__cover img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); transition: opacity 1s var(--ease-out), transform 1.4s var(--ease-out); }
+.bg-card__cover img.is-loaded { opacity: 1; transform: none; }
+/* 封面的细边与底部一点暗角：白底的海报也有边界；排名数字压在暗角上 */
+.bg-card__cover::after { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .1), inset 0 -46px 40px -34px rgb(6 12 30 / .42); }
+.bg-card__rank { position: absolute; z-index: 3; right: 9px; bottom: 2px; font-size: 34px; font-style: italic; font-weight: 400; line-height: 1; color: #fff; text-shadow: 0 2px 14px rgb(6 12 30 / .5); opacity: .94; }
+.bg-card__ph { position: absolute; inset: 0; display: grid; place-items: center; font-size: 40px; font-weight: 300; color: var(--ink-faint); opacity: .45; }
+.bg-card__mine { position: absolute; z-index: 2; left: 8px; top: 8px; padding: 2px 9px; border-radius: 999px; font-size: 11px; letter-spacing: .24em; color: #fff; background: var(--thread); }
+.bg-card.is-mine .bg-card__cover { outline: 1.5px solid var(--thread); outline-offset: 3px; }
+.bg-card__t { font-size: 14px; line-height: 1.6; letter-spacing: .06em; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.bg-card__m { display: flex; gap: .9em; font-size: 12px; color: var(--ink-faint); letter-spacing: .06em; }
+.bg-card__m b { font-family: var(--latin); font-weight: 400; font-size: 13.5px; color: var(--thread); }
+.bg-card__m b.is-none { font-family: inherit; font-size: 12px; color: var(--ink-faint); }
+.bg-card.is-skel .bg-card__cover { animation: bg-pulse 1.6s ease-in-out infinite; }
+.bg-card.is-skel .bg-card__t, .bg-card.is-skel .bg-card__m { background: var(--bg-2); border-radius: 2px; color: transparent; width: 70%; }
+@keyframes bg-pulse { 50% { opacity: .55; } }
+.bg-empty { grid-column: 1 / -1; margin: 3em 0; text-align: center; color: var(--ink-faint); letter-spacing: .2em; }
+@media (hover: hover) {
+  .bg-card:hover .bg-card__cover { transform: translateY(-5px); box-shadow: 0 24px 40px -26px rgb(20 30 60 / .55); }
+  .bg-card:hover .bg-card__t { color: var(--accent); }
+}
+
+/* ---------- 新海诚 · 年表 ---------- */
+.bg-line-wrap { position: relative; }
+.bg-cord { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; color: var(--thread); }
+.bg-cord path { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: var(--len, 4000); stroke-dashoffset: var(--len, 4000); transition: stroke-dashoffset 3.4s var(--ease-film) .3s; }
+.bg-line-wrap.is-drawn .bg-cord path { stroke-dashoffset: 0; }
+.bg-films { position: relative; z-index: 1; list-style: none; margin: 0; padding: 30px 0 10px; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: clamp(14px, 1.7vw, 30px); align-items: start; }
+.bg-film:nth-child(even) { margin-top: clamp(70px, 9vw, 140px); }
+.bg-film[data-reveal] { opacity: 0; transform: translateY(30px); transition: opacity 1.1s calc(var(--i) * .1s + .2s) var(--ease-out), transform 1.4s calc(var(--i) * .1s + .2s) var(--ease-out); }
+.bg-film[data-reveal].is-in { opacity: 1; transform: none; }
+.bg-film a { display: flex; flex-direction: column; gap: .5em; color: inherit; }
+.bg-film__year { font-size: clamp(22px, 2.1vw, 34px); font-style: italic; font-weight: 400; color: var(--ink-faint); letter-spacing: .02em; line-height: 1; transition: color .6s; }
+.bg-film__cover { position: relative; display: block; aspect-ratio: 5 / 7; border-radius: 3px; overflow: hidden; background: var(--c); box-shadow: 0 28px 50px -32px color-mix(in srgb, var(--g) 80%, #0a1630); transition: transform .9s var(--ease-out), box-shadow .9s var(--ease-out); }
+.bg-film__cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity 1.2s var(--ease-out), transform 1.8s var(--ease-out); }
+.bg-film__cover img.is-loaded { opacity: 1; transform: none; }
+.bg-film__knot { width: 9px; height: 9px; margin: .2em 0 .35em 12px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--thread); transition: background-color var(--phase-dur), transform .6s var(--ease-out); }
+.bg-film__t { font-size: 15px; font-weight: 500; letter-spacing: .1em; line-height: 1.5; }
+.bg-film__jp { font-size: 11.5px; letter-spacing: .08em; color: var(--ink-faint); }
+.bg-film__score { display: flex; align-items: baseline; gap: .7em; font-family: var(--latin); font-size: 14px; color: var(--thread); }
+.bg-film__score span { font-size: 12.5px; font-style: italic; color: var(--ink-faint); }
+.bg-film__score em { font-family: var(--serif); font-style: normal; font-size: 11px; letter-spacing: .24em; padding: 1px 8px; border-radius: 999px; color: #fff; background: var(--thread); }
+.bg-film__line { font-size: 12.5px; line-height: 1.85; color: var(--ink-soft); letter-spacing: .04em; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+.bg-film.is-ours .bg-film__year { color: var(--thread); }
+.bg-film.is-ours .bg-film__cover { outline: 1.5px solid var(--thread); outline-offset: 4px; }
+.bg-film.is-ours .bg-film__knot { background: var(--thread); transform: scale(1.3); }
+@media (hover: hover) {
+  .bg-film a:hover .bg-film__cover { transform: translateY(-6px); box-shadow: 0 40px 60px -34px color-mix(in srgb, var(--g) 95%, #0a1630); }
+  .bg-film a:hover .bg-film__cover img.is-loaded { transform: scale(1.04); }
+  .bg-film a:hover .bg-film__year { color: var(--thread); }
+}
+/* 窄一些的屏幕：年表改成竖排，红绳从上往下穿过每个结点 */
+@media (max-width: 1100px) {
+  .bg-films { grid-template-columns: 1fr; gap: 40px; padding: 10px 0 10px 36px; }
+  .bg-film:nth-child(even) { margin-top: 0; }
+  .bg-film { position: relative; }
+  .bg-film a { display: grid; grid-template-columns: clamp(96px, 22vw, 150px) 1fr; grid-template-areas: "cover year" "cover t" "cover jp" "cover score" "cover line"; column-gap: clamp(16px, 3vw, 28px); row-gap: .45em; align-content: start; }
+  .bg-film__cover { grid-area: cover; align-self: start; }
+  .bg-film__year { grid-area: year; } .bg-film__t { grid-area: t; } .bg-film__jp { grid-area: jp; } .bg-film__score { grid-area: score; } .bg-film__line { grid-area: line; }
+  .bg-film__knot { position: absolute; left: -31px; top: 34px; margin: 0; }
+}
+@media (max-width: 720px) {
+  .bg-hero h1 { letter-spacing: .16em; }
+  .bg-hero h1 .latin { letter-spacing: .26em; line-height: 1.9; }
+  .bg-hero__nav { gap: 1.6em; }
+  .bg-hero .depth img { object-position: 38% 50%; }
+  .bg-follow__list { grid-template-columns: 1fr; }
+  .bg-day__jp { font-size: 20px; }
+  .bg-day__cn { font-size: 10px; letter-spacing: .1em; padding: 0; }
+  .bg-shelf { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 22px 12px; }
+  .bg-card__t { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-hero__sun { animation: none; }
+  .bg-line, .bg-follow__card[data-reveal], .bg-film[data-reveal] { opacity: 1; transform: none; transition: none; }
+  .bg-shelf.is-entering .bg-card { animation: none; }
+  .bg-cord path { stroke-dashoffset: 0; transition: none; }
+}
+
+/* 手机：竖排的“今日”与折行的副标题会挤在一起——收起；卡片只留评分 */
+@media (max-width: 720px) {
+  .bg-hero__now { display: none; }
+  .bg-hero__head { grid-template-columns: 1fr; }
+  .bg-card__m span { display: none; }
+  .section__head h2 { white-space: nowrap; }
+}
+
+.bg-follow__meta:empty { display: none; }

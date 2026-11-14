@@ -1,0 +1,9 @@
+# Local development, AI workspace, dev tools, screenshots, and internal notes
+.workbuddy-ai/
+tools/
+CODE-REVIEW.md
+README.md
+启动.bat
+*.log
+.DS_Store
+Thumbs.db

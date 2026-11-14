@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN" data-phase="yoru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>画廊 — かたわれ時</title>
+<meta name="description" content="かたわれ時 · 画廊：今天的 Pixiv 日榜，铺在秋天的溪水上。">
+<meta name="theme-color" content="#1b2a22">
+<link rel="preload" href="assets/fonts/serif-400-hot.3806c509.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/gl-water-1440.webp" as="image" media="(min-width: 721px)">
+<link rel="preload" href="assets/img/gl-water-900.webp" as="image" media="(max-width: 720px)">
+<link rel="preconnect" href="https://api-worker.wh1te.top" crossorigin>
+<link rel="preconnect" href="https://i.pixiv.re">
+<link rel="stylesheet" href="assets/css/fonts.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/fonts-tail.css?v=20261112a" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="assets/css/fonts-tail.css?v=20261112a"></noscript>
+<link rel="stylesheet" href="assets/css/main.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/blog.css?v=20261112a">
+<link rel="stylesheet" href="assets/css/gallery.css?v=20261112a">
+<script src="assets/js/vt.js?v=20261112a"></script>
+<script src="assets/js/config.js?v=20261112a"></script>
+<script src="assets/js/api.js?v=20261112a" defer></script>
+<script src="assets/js/site.js?v=20261112a" defer></script>
+<script src="assets/js/blog.js?v=20261112a" defer></script>
+<script src="assets/js/gallery.js?v=20261112a" defer></script>
+</head>
+<body class="gallery-page">
+<div class="grain" aria-hidden="true"></div>
+<div class="comet" aria-hidden="true"><div class="comet__track"></div><div class="comet__ticks"></div><div class="comet__head"></div></div>
+
+<!-- 水面：静态图先铺上，WebGL 就绪后换成会流动、会起涟漪的那一层 -->
+<div class="water" aria-hidden="true">
+  <picture><source media="(max-width: 720px)" srcset="assets/img/gl-water-900.webp"><img class="water__img" src="assets/img/gl-water-1440.webp" alt="" decoding="async" fetchpriority="high"></picture>
+  <canvas class="water__gl"></canvas>
+</div>
+
+<header class="bar" data-over-image>
+  <a class="bar__home" href="index.html">かたわれ時 <span class="latin">Katawaredoki</span></a>
+  <div class="bar__chapter" aria-live="polite"><span data-default="画廊">画廊</span></div>
+  <div class="bar__tools">
+    <a class="bar__btn" href="archive.html" aria-label="文库"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 3.5h3v13H4zM8.5 3.5h3v13h-3zM13 4.2l2.8-.7 2.6 12.4-2.8.6z"/></svg><span>文库</span></a>
+  </div>
+</header>
+
+<main class="gl" data-dark-stage>
+  <header class="gl-head">
+    <h1>画廊<span class="latin">Gallery</span></h1>
+    <p class="gl-head__meta"><span class="latin" data-slot="date"></span><span>Pixiv 日榜</span><span class="latin" data-slot="count"></span></p>
+  </header>
+  <div class="gl-wall" data-slot="wall" aria-busy="true"></div>
+  <p class="gl-note" data-slot="note" hidden></p>
+
+  <footer class="foot">
+    <span>かたわれ時 · <a href="index.html">首页</a> · <a href="archive.html">文库</a></span><span class="edge" data-edge></span>
+  </footer>
+</main>
+</body>
+</html>
